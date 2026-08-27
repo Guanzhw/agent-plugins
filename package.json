@@ -1,8 +1,19 @@
 {
   "name": "guanzhw-agent-plugins",
   "version": "0.2.0",
+  "description": "Cross-host engineering plugins for Codex, Claude Code, and Pi",
   "private": true,
   "type": "module",
+  "keywords": [
+    "pi-package",
+    "coding-agents",
+    "agent-plugins"
+  ],
+  "pi": {
+    "skills": [
+      "./plugins/repo-ai-discipline/skills"
+    ]
+  },
   "scripts": {
     "test": "node --test test/*.test.mjs",
     "check": "node --test test/*.test.mjs"

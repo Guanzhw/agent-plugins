@@ -34,6 +34,19 @@ claude plugin install agentsession@guanzhw
 
 Run `/reload-plugins` or start a new Claude Code session after installation.
 
+## Install for Pi
+
+Pi installs Git packages directly rather than through a marketplace catalog.
+The repository exposes the host-neutral `repo-ai-discipline` skill as a pinned
+Pi package:
+
+```powershell
+pi install git:github.com/Guanzhw/agent-plugins@v0.2.0
+```
+
+CodeFacts and AgentSession remain Codex/Claude integrations because their
+skills rely on MCP servers supplied by those hosts.
+
 ## Update
 
 ```powershell
@@ -49,6 +62,9 @@ claude plugin update agentsession@guanzhw
 ```
 
 Start a new task or session after updating.
+
+For Pi, install the next repository tag explicitly when a new version is
+published.
 
 ## Development
 

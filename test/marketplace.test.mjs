@@ -11,6 +11,15 @@ const expectedMcpPackages = {
   agentsession: "@acetamido/agentsession-mcp@1.9.2",
 };
 
+test("Pi package exposes only the host-neutral repository discipline skill", async () => {
+  const manifest = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"));
+
+  assert.ok(manifest.keywords.includes("pi-package"));
+  assert.deepEqual(manifest.pi, {
+    skills: ["./plugins/repo-ai-discipline/skills"],
+  });
+});
+
 test("Codex marketplace entries resolve to matching plugin manifests", async () => {
   const marketplace = JSON.parse(
     await readFile(path.join(root, ".agents", "plugins", "marketplace.json"), "utf8"),
