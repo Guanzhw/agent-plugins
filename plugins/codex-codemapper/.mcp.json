@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "codemapper": {
+      "command": "node",
+      "cwd": ".",
+      "args": [
+        "./server/index.mjs"
+      ]
+    }
+  }
+}

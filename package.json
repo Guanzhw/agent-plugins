@@ -1,0 +1,10 @@
+{
+  "name": "guanzhw-codex-plugins",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "check": "node --check plugins/codex-codemapper/server/index.mjs && node --check plugins/codex-codemapper/server/codemapper.mjs && node --test test/*.test.mjs"
+  }
+}

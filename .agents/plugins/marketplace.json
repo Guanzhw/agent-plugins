@@ -1,0 +1,20 @@
+{
+  "name": "guanzhw",
+  "interface": {
+    "displayName": "Guanzhw Plugins"
+  },
+  "plugins": [
+    {
+      "name": "codex-codemapper",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex-codemapper"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Engineering"
+    }
+  ]
+}
