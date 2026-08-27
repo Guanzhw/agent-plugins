@@ -1,0 +1,36 @@
+{
+  "name": "agentsession",
+  "version": "1.9.2",
+  "description": "Read-only local coding-agent session history for coding agents",
+  "author": {
+    "name": "Guanzhw",
+    "url": "https://github.com/Guanzhw"
+  },
+  "homepage": "https://github.com/Guanzhw/AgentSession",
+  "repository": "https://github.com/Guanzhw/AgentSession",
+  "license": "MIT",
+  "keywords": [
+    "agentsession",
+    "mcp",
+    "session-history",
+    "coding-agent"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AgentSession",
+    "shortDescription": "Inspect local coding-agent session history",
+    "longDescription": "Provides bounded, read-only session history from available local coding-agent providers while preserving transcript provenance and untrusted-content boundaries.",
+    "developerName": "Guanzhw",
+    "category": "Engineering",
+    "capabilities": [
+      "Read"
+    ],
+    "websiteURL": "https://github.com/Guanzhw/AgentSession",
+    "defaultPrompt": [
+      "Search my local coding-agent sessions",
+      "Show the timeline for this session",
+      "Inspect the context around this session event"
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}

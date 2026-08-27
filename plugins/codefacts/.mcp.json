@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "codefacts": {
+      "command": "node",
+      "cwd": ".",
+      "args": [
+        "./scripts/launch-npx.mjs",
+        "--yes",
+        "codefacts@0.1.11",
+        "mcp"
+      ],
+      "startup_timeout_sec": 120
+    }
+  }
+}

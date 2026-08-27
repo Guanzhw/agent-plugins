@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "agentsession": {
+      "command": "node",
+      "cwd": ".",
+      "args": [
+        "./scripts/launch-npx.mjs",
+        "--yes",
+        "@acetamido/agentsession-mcp@1.9.2"
+      ],
+      "startup_timeout_sec": 120
+    }
+  }
+}

@@ -1,14 +1,38 @@
 {
   "name": "guanzhw",
   "interface": {
-    "displayName": "Guanzhw Plugins"
+    "displayName": "Guanzhw Agent Plugins"
   },
   "plugins": [
     {
-      "name": "codex-codemapper",
+      "name": "codefacts",
       "source": {
         "source": "local",
-        "path": "./plugins/codex-codemapper"
+        "path": "./plugins/codefacts"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Engineering"
+    },
+    {
+      "name": "repo-ai-discipline",
+      "source": {
+        "source": "local",
+        "path": "./plugins/repo-ai-discipline"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Engineering"
+    },
+    {
+      "name": "agentsession",
+      "source": {
+        "source": "local",
+        "path": "./plugins/agentsession"
       },
       "policy": {
         "installation": "AVAILABLE",

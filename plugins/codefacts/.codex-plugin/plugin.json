@@ -1,0 +1,36 @@
+{
+  "name": "codefacts",
+  "version": "0.1.11",
+  "description": "Source-backed repository code facts for coding agents",
+  "author": {
+    "name": "Guanzhw",
+    "url": "https://github.com/Guanzhw"
+  },
+  "homepage": "https://github.com/Guanzhw/codefacts",
+  "repository": "https://github.com/Guanzhw/codefacts",
+  "license": "MIT",
+  "keywords": [
+    "codefacts",
+    "code-intelligence",
+    "mcp",
+    "static-analysis"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "CodeFacts",
+    "shortDescription": "Inspect source-backed code structure and relationships",
+    "longDescription": "Provides bounded, read-only repository facts with source locations and freshness evidence through five MCP workflows.",
+    "developerName": "Guanzhw",
+    "category": "Engineering",
+    "capabilities": [
+      "Read"
+    ],
+    "websiteURL": "https://github.com/Guanzhw/codefacts",
+    "defaultPrompt": [
+      "Map this repository before making changes",
+      "Find and expand the authentication symbols",
+      "Trace the static path between these functions"
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}

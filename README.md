@@ -1,50 +1,74 @@
-# Guanzhw Plugins
+# Guanzhw Agent Plugins
 
-Git-backed Codex marketplace for Guanzhw-developed plugins. It currently
-contains `codex-codemapper`, a read-only CodeMapper MCP integration with
-mapping, symbol search, file outlines, impact expansion, and static call-path
-tracing.
+Git-backed plugin marketplace for Codex and Claude Code. Each plugin is
+self-contained and keeps host-specific manifests beside shared skills and MCP
+configuration.
 
-## Install
+## Plugins
+
+| Plugin | Purpose | Runtime |
+|---|---|---|
+| `codefacts` | Bounded, source-backed repository structure and relationships | Node.js plus the published `codefacts` launcher |
+| `repo-ai-discipline` | Evidence-based repository discipline for AI coding agents | Skill only |
+| `agentsession` | Bounded, read-only local coding-agent session history | Node.js 22.15 or newer |
+
+## Install for Codex
 
 ```powershell
-codex plugin marketplace add Guanzhw/codex-plugins --ref main
-codex plugin add codex-codemapper@guanzhw
+codex plugin marketplace add Guanzhw/agent-plugins --ref main
+codex plugin add codefacts@guanzhw
+codex plugin add repo-ai-discipline@guanzhw
+codex plugin add agentsession@guanzhw
 ```
 
-Start a new Codex task after installation so the plugin's MCP server and skill
-load.
+Start a new Codex task after installation so skills and MCP servers load.
 
-`codex-codemapper` requires Node.js 20 or newer and CodeMapper's `cm`
-executable on `PATH` or in `CODEMAPPER_BIN`. Until CodeMapper publishes native
-binaries, follow its
-[source installation instructions](https://github.com/p1rallels/codemapper#installation).
+## Install for Claude Code
+
+```powershell
+claude plugin marketplace add Guanzhw/agent-plugins
+claude plugin install codefacts@guanzhw
+claude plugin install repo-ai-discipline@guanzhw
+claude plugin install agentsession@guanzhw
+```
+
+Run `/reload-plugins` or start a new Claude Code session after installation.
 
 ## Update
 
 ```powershell
 codex plugin marketplace upgrade guanzhw
-codex plugin add codex-codemapper@guanzhw
+codex plugin add codefacts@guanzhw
+codex plugin add repo-ai-discipline@guanzhw
+codex plugin add agentsession@guanzhw
+
+claude plugin marketplace update guanzhw
+claude plugin update codefacts@guanzhw
+claude plugin update repo-ai-discipline@guanzhw
+claude plugin update agentsession@guanzhw
 ```
 
-Start a new task after reinstalling. Marketplace releases increment the
-plugin's semantic version so Codex refreshes its installed copy.
+Start a new task or session after updating.
 
 ## Development
-
-The marketplace keeps the plugin's existing dependency-free Node.js tests:
 
 ```powershell
 npm test
 npm run check
 ```
 
-Validate the distributable plugin with Codex's `plugin-creator` validator:
+Validate every plugin with the relevant host CLIs before publishing:
 
 ```powershell
-python /path/to/plugin-creator/scripts/validate_plugin.py plugins/codex-codemapper
+python /path/to/plugin-creator/scripts/validate_plugin.py plugins/codefacts
+python /path/to/plugin-creator/scripts/validate_plugin.py plugins/repo-ai-discipline
+python /path/to/plugin-creator/scripts/validate_plugin.py plugins/agentsession
+claude plugin validate --strict plugins/codefacts
+claude plugin validate --strict plugins/repo-ai-discipline
+claude plugin validate --strict plugins/agentsession
+claude plugin validate --strict .
 ```
 
 Plugin source and marketplace metadata live together in this repository. Add
-new plugins under `plugins/<plugin-name>` and append their entries to
-`.agents/plugins/marketplace.json`.
+new plugins under `plugins/<plugin-name>` and register them in both marketplace
+files when both hosts are supported.

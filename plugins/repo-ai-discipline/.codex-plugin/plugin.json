@@ -1,0 +1,34 @@
+{
+  "name": "repo-ai-discipline",
+  "version": "0.1.0",
+  "description": "Evidence-based repository discipline guidance for AI coding agents",
+  "author": {
+    "name": "Guanzhw",
+    "url": "https://github.com/Guanzhw"
+  },
+  "homepage": "https://github.com/Guanzhw/agent-plugins/tree/main/plugins/repo-ai-discipline",
+  "repository": "https://github.com/Guanzhw/agent-plugins",
+  "keywords": [
+    "repository-governance",
+    "ai-agents",
+    "engineering-discipline",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Repository AI Discipline",
+    "shortDescription": "Evidence-based engineering guidance for AI contributors",
+    "longDescription": "Adds a reusable repository-discipline skill for deriving ownership, authority, simplification, validation, feedback, and delivery rules from local evidence.",
+    "developerName": "Guanzhw",
+    "category": "Engineering",
+    "capabilities": [
+      "Read"
+    ],
+    "websiteURL": "https://github.com/Guanzhw/agent-plugins/tree/main/plugins/repo-ai-discipline",
+    "defaultPrompt": [
+      "Assess this repository's AI discipline",
+      "Bootstrap evidence-based repository guidance",
+      "Review these agent instructions for drift"
+    ]
+  }
+}

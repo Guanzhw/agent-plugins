@@ -1,0 +1,18 @@
+{
+  "name": "agentsession",
+  "version": "1.9.2",
+  "description": "Read-only local coding-agent session history for coding agents",
+  "author": {
+    "name": "Guanzhw",
+    "url": "https://github.com/Guanzhw"
+  },
+  "homepage": "https://github.com/Guanzhw/AgentSession",
+  "repository": "https://github.com/Guanzhw/AgentSession",
+  "license": "MIT",
+  "keywords": [
+    "agentsession",
+    "mcp",
+    "session-history",
+    "coding-agent"
+  ]
+}
