@@ -1,17 +1,24 @@
 ---
 name: codefacts
-description: Use CodeFacts for bounded, source-backed repository structure and relationship facts before broad source reads or edits.
+description: Use CodeFacts when a task needs source-backed symbol discovery, repository structure, or static relationships.
 ---
 
 # CodeFacts workflow
 
-CodeFacts exposes exactly five read-only MCP tools:
+Choose the read-only tool that answers the current question:
 
-- `map` — repository structure and explicit language file/symbol counts.
-- `search` — indexed symbols, endpoints, and Markdown headings.
-- `outline` — symbols or headings in one file.
-- `expand` — one definition with static callers, callees, references, and tests.
-- `path` — a shortest confirmed static relationship path between symbols.
+- Known identifier or code term: `search`; use `path_prefix` when its file or
+  directory is known. Search covers indexed symbols, endpoints, and Markdown
+  headings; query words are prefix matches joined with AND, not natural-language
+  questions or raw text search.
+- Repository overview: `map`. File overview: `outline`.
+- Confirmed symbol: `expand` with `symbol` and, when known, `file_path` to inspect
+  its definition, callers, callees, references, and tests.
+- Relationship between confirmed symbols: `path` for a shortest static path.
+
+When the relevant source location is already known, read that source directly.
+Use map or outline when the overview will help choose the next step; the five
+tools are alternatives, not a required sequence.
 
 For a rootless server, pass the absolute target repository as
 `repository_root` on every call. Use project-relative values for `file_path`,
@@ -19,8 +26,12 @@ For a rootless server, pass the absolute target repository as
 when `freshness.repository_root` identifies the intended project; its
 generation and source hashes are the evidence that the facts were refreshed.
 
-Start with `map`, narrow candidates with `search`, inspect a file with
-`outline`, then use `expand` or `path` after confirming the symbol names.
-Results are bounded and source-located. Static uncertainty is reported as
-uncertainty: `no_static_path` describes missing confirmed static edges, not
-runtime unreachability.
+Results are bounded. For more `search` or `outline` results, pass `next_cursor`
+as `cursor` with the same query and filters; continue only when more facts are
+needed. A truncated page or source excerpt is incomplete. An empty symbol
+search does not establish that text is absent: refine the identifier, outline
+the known file, or use raw text search as appropriate.
+
+Preserve relation direction and confidence when using the results. Heuristic
+or unresolved relationships are candidates, not confirmed calls;
+`no_static_path` does not establish runtime unreachability.

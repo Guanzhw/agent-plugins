@@ -27,7 +27,7 @@
     ],
     "websiteURL": "https://github.com/Guanzhw/codefacts",
     "defaultPrompt": [
-      "Map this repository before making changes",
+      "Show this repository's structure",
       "Find and expand the authentication symbols",
       "Trace the static path between these functions"
     ]
