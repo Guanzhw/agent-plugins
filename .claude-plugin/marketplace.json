@@ -11,7 +11,7 @@
       "name": "codefacts",
       "source": "./plugins/codefacts",
       "description": "Source-backed repository code facts through five read-only MCP workflows",
-      "version": "0.1.12",
+      "version": "0.1.15",
       "category": "development"
     },
     {

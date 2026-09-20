@@ -28,9 +28,17 @@ generation and source hashes are the evidence that the facts were refreshed.
 
 Results are bounded. For more `search` or `outline` results, pass `next_cursor`
 as `cursor` with the same query and filters; continue only when more facts are
-needed. A truncated page or source excerpt is incomplete. An empty symbol
+needed. For `expand`, use a cursor from `next` with its matching `section`,
+symbol/file and format. Reuse the returned cursor verbatim; for JSON, pass it
+directly from the result object when possible. A truncated page or source
+excerpt is incomplete. An empty symbol
 search does not establish that text is absent: refine the identifier, outline
 the known file, or use raw text search as appropriate.
+
+All tools default to `format: "compact"`. Use `format: "markdown"` when an
+agent is reading the result directly: it is a text-only, fact-preserving
+presentation of the compact response. JSON consumers should keep `compact` or
+request `full` when they need the expanded structure.
 
 Preserve relation direction and confidence when using the results. Heuristic
 or unresolved relationships are candidates, not confirmed calls;

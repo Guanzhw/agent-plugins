@@ -1,6 +1,6 @@
 {
   "name": "codefacts",
-  "version": "0.1.12+codex.20260827192353",
+  "version": "0.1.15",
   "description": "Source-backed repository code facts for coding agents",
   "author": {
     "name": "Guanzhw",
