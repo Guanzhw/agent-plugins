@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const expectedPlugins = ["codefacts", "repo-ai-discipline", "agentsession"];
 const expectedMcpPackages = {
-  codefacts: "codefacts@0.1.15",
+  codefacts: "codefacts@0.1.16",
   agentsession: "@acetamido/agentsession-mcp@1.9.2",
 };
 
