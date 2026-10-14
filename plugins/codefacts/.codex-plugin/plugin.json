@@ -1,6 +1,6 @@
 {
   "name": "codefacts",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "Source-backed repository code facts for coding agents",
   "author": {
     "name": "Guanzhw",
@@ -19,7 +19,7 @@
   "interface": {
     "displayName": "CodeFacts",
     "shortDescription": "Inspect source-backed code structure and relationships",
-    "longDescription": "Provides bounded, read-only repository facts with source locations and freshness evidence through five MCP workflows.",
+    "longDescription": "Provides bounded, read-only repository facts with source locations and freshness evidence through seven MCP workflows.",
     "developerName": "Guanzhw",
     "category": "Engineering",
     "capabilities": [

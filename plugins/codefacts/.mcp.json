@@ -6,7 +6,7 @@
       "args": [
         "./scripts/launch-npx.mjs",
         "--yes",
-        "codefacts@0.1.17",
+        "codefacts@0.1.18",
         "mcp"
       ],
       "startup_timeout_sec": 120
