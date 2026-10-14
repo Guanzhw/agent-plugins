@@ -10,8 +10,8 @@
     {
       "name": "codefacts",
       "source": "./plugins/codefacts",
-      "description": "Source-backed repository code facts through five read-only MCP workflows",
-      "version": "0.1.17",
+      "description": "Source-backed repository code facts through seven read-only MCP workflows",
+      "version": "0.1.18",
       "category": "development"
     },
     {
