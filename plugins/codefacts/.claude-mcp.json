@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "codefacts": {
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/scripts/launch-npx.mjs",
+        "--yes",
+        "codefacts@0.2.0",
+        "mcp"
+      ]
+    }
+  }
+}
