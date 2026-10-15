@@ -5,63 +5,47 @@ description: Use CodeFacts when a task needs source-backed symbol discovery, rep
 
 # CodeFacts workflow
 
-Choose the read-only tool that answers the current question:
+Choose the default read-only tool that answers the current question:
 
-- Known identifier or code term: `search`; use `path_prefix` when its file or
-  directory is known. Search covers indexed symbols, endpoints, and Markdown
-  headings; query words are prefix matches joined with AND, not natural-language
-  questions or raw text search.
-- Repository overview: `map`. File overview: `outline`.
-- Confirmed symbol: `expand` with `symbol` and, when known, `file_path` to inspect
-  its definition, callers, callees, references, and tests.
-- Unfamiliar repository or behavior-to-source question: `explore`; omit `query`
-  for orientation, or use concrete code terms and `path_prefix` for lexical
-  candidates. Follow previews with `file_path`/`start_line` or up to eight
-  explicit `reads` ranges to establish behavior from current source.
-- Change impact of a confirmed symbol: `impact` with `symbol` and optional
-  `file_path` for bounded static dependents, shortest graph-hop witnesses, and
-  reached test-associated symbols. Inspect its explicit depth, node, and work
-  cutoffs. Heuristic/unresolved bindings are excluded; extraction gaps and
-  runtime dispatch may omit dependencies.
-- Relationship between confirmed symbols: `path` for a shortest static path.
+- `explore`: orient in an unfamiliar repository, locate implementation from
+  concrete code terms, or read known source. Omit `query` for orientation; use
+  `path_prefix` to narrow lexical candidates, including Markdown documentation.
+  Follow source previews with `file_path`/`start_line` or up to eight explicit
+  `reads` ranges to establish behavior from current source. Lexical matches and
+  documentation associations need source judgment; they do not confirm calls.
+- `expand`: inspect a confirmed symbol's definition, callers, callees,
+  references, and related tests. Use `section: "callers"`, `"callees"`, or
+  `"tests"` when only that relationship is needed. Disambiguate same-name
+  symbols with `file_path` or an exact symbol id.
+- `impact`: trace bounded static dependents of one confirmed symbol, with
+  shortest graph-hop witnesses and reached test-associated symbols. Use
+  `file_path` or an exact id to disambiguate. Preserve witness direction and
+  depth, node, and work cutoffs. Heuristic/unresolved bindings are excluded;
+  extraction gaps and runtime dispatch may omit dependencies.
 
 When the relevant source location is already known, read that source directly.
-Use map or outline when the overview will help choose the next step. The seven
-tools (`explore`, `impact`, `map`, `search`, `outline`, `expand`, `path`) are
-alternatives, not a required sequence. Disambiguate same-name symbols with
-`file_path` or an exact symbol id; use `from_file_path`/`to_file_path` for `path`.
+An empty lexical result does not establish that text is absent: refine to a
+concrete identifier or use ordinary text search to locate source.
 
-For a rootless server, pass the absolute target repository as
-`repository_root` on every call. Use project-relative values for `file_path`,
-`path_prefix`, `from_file_path`, and `to_file_path`. A response is usable only
-when `freshness.repository_root` identifies the intended project; its
-generation and source hashes are the evidence that the facts were refreshed.
-Exploration reports this evidence in its text header and verifies source reads
-against current disk content. Preserve partial freshness and omissions.
+For a rootless server, pass the absolute target repository as `repository_root`
+on every call. Use project-relative `file_path` and `path_prefix` values.
+Check that returned freshness identifies the intended repository; retain its
+generation, source hashes, partial freshness, and omissions. `explore` reports
+this evidence in its text header and verifies source reads against disk.
 
-Results are bounded. For more `search` or `outline` results, pass `next_cursor`
-as `cursor` with the same query and filters; continue only when more facts are
-needed. For `expand`, use a cursor from `next` with its matching `section`,
-symbol/file and format. Reuse the returned cursor verbatim; for JSON, pass it
-directly from the result object when possible. A truncated page or source
-excerpt is incomplete. An empty symbol
-search does not establish that text is absent: refine the identifier, outline
-the known file, or use raw text search as appropriate.
+`explore` returns text only. Its `max_bytes` is the total rendered UTF-8 response
+budget including metadata (2,000–32,000; default 24,000). `expand` and `impact`
+default to `format: "compact"`; use `"markdown"` for agent-readable text or
+`"full"` for expanded JSON. A truncated page or excerpt is incomplete. For
+`expand`, continue a cursor from `next` with the matching `section`, symbol,
+file and format; reuse the returned cursor verbatim.
 
-The five exact-fact tools and `impact` default to `format: "compact"`.
-Use `format: "markdown"` when an
-agent is reading the result directly: it is a text-only, fact-preserving
-presentation of the compact response. JSON consumers should keep `compact` or
-request `full` when they need the expanded structure. `explore` returns text
-only and takes `max_bytes` (2,000–32,000; default 24,000) as its total rendered
-UTF-8 response budget including metadata. It has no `format` or
-`structuredContent`; lexical matches are candidates that need source judgment.
+The launcher uses the native three-tool default. An explicitly configured
+`mcp --tools all` also exposes `map`, `search`, `outline`, and `path`; search
+includes symbols, endpoints, and Markdown headings. `mcp --tools explore`
+exposes only `explore`. Direct native CLI queries retain every workflow:
+`node` aliases `expand`, and `callers`/`callees` select its matching section.
+A missing static path does not establish runtime unreachability.
 
-For native CLI use, `node` aliases `expand`, and `callers`/`callees` select its
-matching section. `explore` and `impact` are also native commands. CodeFacts
-keeps its fact store outside the repository by default and runs locally with
-the native binary; querying facts needs no external service.
-
-Preserve relation direction and confidence when using the results. Heuristic
-or unresolved relationships are candidates, not confirmed calls;
-`no_static_path` does not establish runtime unreachability.
+CodeFacts runs locally through the native binary and keeps its fact store
+outside the repository by default. Querying facts needs no external service.
