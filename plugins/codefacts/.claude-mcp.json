@@ -5,7 +5,7 @@
       "args": [
         "${CLAUDE_PLUGIN_ROOT}/scripts/launch-npx.mjs",
         "--yes",
-        "codefacts@0.2.0",
+        "codefacts@0.2.2",
         "mcp"
       ]
     }
