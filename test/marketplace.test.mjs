@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const expectedPlugins = ["codefacts", "repo-ai-discipline", "agentsession"];
 const expectedMcpPackages = {
-  codefacts: "codefacts@0.2.1",
+  codefacts: "codefacts@0.2.2",
   agentsession: "@acetamido/agentsession-mcp@1.9.2",
 };
 
@@ -135,7 +135,7 @@ test("CodeFacts host-resolved launchers work outside a plugin root containing sp
       });
       assert.ifError(result.error);
       assert.equal(result.status, 7, `${host}: ${result.stderr}`);
-      assert.equal(result.stdout.trim(), "--yes codefacts@0.2.1 mcp", host);
+      assert.equal(result.stdout.trim(), "--yes codefacts@0.2.2 mcp", host);
     }
   } finally {
     await rm(temporaryRoot, { recursive: true, force: true });

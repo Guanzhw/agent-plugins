@@ -29,14 +29,16 @@ concrete identifier or use ordinary text search to locate source.
 
 For a rootless server, pass the absolute target repository as `repository_root`
 on every call. Use project-relative `file_path` and `path_prefix` values.
-Check that returned freshness identifies the intended repository; retain its
-generation, source hashes, partial freshness, and omissions. `explore` reports
-this evidence in its text header and verifies source reads against disk.
+Check that returned freshness identifies the intended repository; retain
+partial freshness and omissions. `explore` verifies source reads against disk
+and shows concise source locations.
 
 `explore` returns text only. Its `max_bytes` is the total rendered UTF-8 response
-budget including metadata (2,000–32,000; default 24,000). `expand` and `impact`
-default to `format: "compact"`; use `"markdown"` for agent-readable text or
-`"full"` for expanded JSON. A truncated page or excerpt is incomplete. For
+budget including metadata (2,000–32,000; default 24,000). It returns complete
+small source owners when they fit the budget. MCP queries with omitted `format`
+return readable Markdown text, matching the CLI default. Use explicit
+`format: "compact"` or `"full"` for JSON with structured content and source
+hash metadata. A truncated page or excerpt is incomplete. For
 `expand`, continue a cursor from `next` with the matching `section`, symbol,
 file and format; reuse the returned cursor verbatim.
 
